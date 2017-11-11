@@ -99,7 +99,7 @@ const onboardingDialog = [
 const bot = new builder.UniversalBot(connector);
 
 bot.dialog('/', onboardingDialog);
-bot.dialog('mainDialog', mainDialog); //TODO Add main dialog
+bot.dialog('mainDialog', mainDialog); // TODO Add main dialog
 bot.recognizer(new builder.LuisRecognizer(LUIS_APP_URL));
 
 const middleware = {
