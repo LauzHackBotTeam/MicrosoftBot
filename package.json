@@ -1,0 +1,26 @@
+{
+  "name": "microsoftbot",
+  "version": "1.0.0",
+  "description": "A simple bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LauzHackBotTeam/MicrosoftBot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "Daniel Limia Aspas & Cristian Pinto Quinto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LauzHackBotTeam/MicrosoftBot/issues"
+  },
+  "homepage": "https://github.com/LauzHackBotTeam/MicrosoftBot#readme",
+  "dependencies": {
+    "botbuilder": "^3.11.0",
+    "restify": "^6.3.2"
+  }
+}
