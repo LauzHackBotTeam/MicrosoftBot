@@ -5,6 +5,7 @@ const request = require('request');
 const Jimp = require('jimp');
 
 const HUB_URL = 'https://3d389996.ngrok.io/reply';
+const LUIS_APP_URL = process.env.LUIS_APP_URL;
 
 const qr = new QrCode();
 qr.callback = (error, value) => {
@@ -82,8 +83,11 @@ const onboardingDialog = [
   (session, results) => {
     const userIDinHospital = results.response;
     const message = 'Alright! Thank you very much. By talking to me you can: \n - Ask to directly chat with your doctor. \n - Videocall your doctor. \n - Access your meal information. \n - Submit your requests. \n - Ask for a nurse to come';
-    session.endDialog(message);
+    builder.Prompts.text(session, message);
     postMessage(session.message.address, message);
+  },
+  (session, results) => {
+    session.beginDialog('mainDialog', results);
   },
 ];
 
@@ -95,7 +99,8 @@ const onboardingDialog = [
 const bot = new builder.UniversalBot(connector);
 
 bot.dialog('/', onboardingDialog);
-
+bot.dialog('mainDialog', mainDialog); //TODO Add main dialog
+bot.recognizer(new builder.LuisRecognizer(LUIS_APP_URL));
 
 const middleware = {
   botbuilder: [(session, next) => {
