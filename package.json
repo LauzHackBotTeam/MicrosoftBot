@@ -21,6 +21,9 @@
   "homepage": "https://github.com/LauzHackBotTeam/MicrosoftBot#readme",
   "dependencies": {
     "botbuilder": "^3.11.0",
-    "restify": "^6.3.2"
+    "jimp": "^0.2.28",
+    "qrcode-reader": "^1.0.4",
+    "restify": "^6.3.2",
+    "request": "latest"
   }
 }
