@@ -4,7 +4,7 @@ const QrCode = require('qrcode-reader');
 const request = require('request');
 const Jimp = require('jimp');
 
-const HUB_URL = 'https://3d389996.ngrok.io/reply';
+const HUB_URL = process.env.HUB_URL;
 const LUIS_APP_URL = process.env.LUIS_APP_URL;
 
 const qr = new QrCode();
@@ -76,19 +76,14 @@ server.post('/api/messages', connector.listen());
 
 const onboardingDialog = [
   (session) => {
+    session.preferredLocale('en');
     const message = 'Hi! Please type in the code present on your wristband';
     builder.Prompts.text(session, message);
     postMessage(session.message.address, message);
   },
   (session, results) => {
-    const userIDinHospital = results.response;
-    const message = 'Alright! Thank you very much. By talking to me you can: \n - Ask to directly chat with your doctor. \n - Videocall your doctor. \n - Access your meal information. \n - Submit your requests. \n - Ask for a nurse to come';
-    builder.Prompts.text(session, message);
-    postMessage(session.message.address, message);
-  },
-  (session, results) => {
-    session.beginDialog('mainDialog', results);
-  },
+    session.beginDialog('mainDialog');
+  }
 ];
 
 
@@ -99,8 +94,57 @@ const onboardingDialog = [
 const bot = new builder.UniversalBot(connector);
 
 bot.dialog('/', onboardingDialog);
-bot.dialog('mainDialog', mainDialog); // TODO Add main dialog
-bot.recognizer(new builder.LuisRecognizer(LUIS_APP_URL));
+
+bot.dialog('dailyMealInformation', [
+  (session, results, next) => {
+    let msg = 'Welcome to DailyMealInformation';
+    postMessage(session.message.address, msg);
+    session.send(msg);
+  }
+]);
+
+bot.dialog('chatWithProfessional', [
+  (session, results, next) => {
+    let msg = 'Welcome to ChatWithProfessional';
+    postMessage(session.message.address, msg);
+    session.send(msg);
+  }
+]);
+
+bot.dialog('videocallProfessional', [
+  (session, results, next) => {
+    let msg = 'Welcome to VideocallProfessional';
+    postMessage(session.message.address, msg);
+    session.send(msg);
+  }
+]);
+
+let recognizer = new builder.LuisRecognizer({
+  "en": LUIS_APP_URL
+});
+
+let luisDialog = new builder.IntentDialog({recognizers: [recognizer]})
+.onBegin((session, results) => {
+  const message = 'Alright! Thank you very much. By talking to me you can: \n - Ask to directly chat with your doctor. \n - Videocall your doctor. \n - Access your meal information. \n - Submit your requests. \n - Ask for a nurse to come';
+  session.send(message);
+  postMessage(session.message.address, message);
+  let msg = 'Starting Intent Dialog';
+  session.send(msg);
+  postMessage(session.message.address, msg);
+})
+.onDefault([
+  (session, results, next) => {
+    let msg = 'Default dialog triggered';
+    session.send(msg);
+    postMessage(session.message.address, msg);
+  }
+]);
+
+luisDialog.matches('AccessDailyMealInformation', 'dailyMealInformation');
+luisDialog.matches('ChatWithProfessional', 'chatWithProfessional');
+luisDialog.matches('videocallProfessional', 'VideocallProfessional');
+
+bot.dialog('mainDialog', luisDialog);
 
 const middleware = {
   botbuilder: [(session, next) => {

@@ -1,0 +1,20 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/app.js",
+      "env": {
+        "MICROSOFT_APP_ID":"8fd16821-3550-4d84-9d4a-c3e037c54a92",
+        "MICROSOFT_APP_PASSWORD":"mtalatnGSF0#?LODM0545~;",
+        "LUIS_APP_URL":"https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/d07761a6-c436-4e2c-8f66-140d5037a1eb?subscription-key=345668ef5be446ed9e0246045ab7a2bb&staging=true&verbose=true&timezoneOffset=0&q=",
+        "HUB_URL": "https://luazhack-middleware.herokuapp.com/reply"
+      }
+    }
+  ]
+}

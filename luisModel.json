@@ -1,0 +1,158 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "LauzHackBot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "AccessDailyMealInformation"
+    },
+    {
+      "name": "ChatWithProfessional"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "VideoCallProfessional"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [
+    {
+      "name": "Meal",
+      "subLists": [
+        {
+          "canonicalForm": "lunch",
+          "list": [
+            "lunch"
+          ]
+        },
+        {
+          "canonicalForm": "dinner",
+          "list": [
+            "dinner"
+          ]
+        },
+        {
+          "canonicalForm": "breakfast",
+          "list": [
+            "breakfast"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Professional",
+      "subLists": [
+        {
+          "canonicalForm": "doctor",
+          "list": [
+            "doctor",
+            "surgeon"
+          ]
+        },
+        {
+          "canonicalForm": "nurse",
+          "list": [
+            "nurse",
+            "intern"
+          ]
+        }
+      ]
+    }
+  ],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "can i talk to a doctor please?",
+      "intent": "ChatWithProfessional",
+      "entities": []
+    },
+    {
+      "text": "i would like to tell something to my doctor",
+      "intent": "ChatWithProfessional",
+      "entities": []
+    },
+    {
+      "text": "can i chat with my doctor?",
+      "intent": "ChatWithProfessional",
+      "entities": []
+    },
+    {
+      "text": "could i have a chat with the doctor please?",
+      "intent": "ChatWithProfessional",
+      "entities": []
+    },
+    {
+      "text": "i would like to chat with a doctor",
+      "intent": "ChatWithProfessional",
+      "entities": []
+    },
+    {
+      "text": "please, video call the doctor",
+      "intent": "VideoCallProfessional",
+      "entities": []
+    },
+    {
+      "text": "i want to video call my doctor",
+      "intent": "VideoCallProfessional",
+      "entities": []
+    },
+    {
+      "text": "can i have a video chat with my doctor?",
+      "intent": "VideoCallProfessional",
+      "entities": []
+    },
+    {
+      "text": "could i video call my doctor?",
+      "intent": "VideoCallProfessional",
+      "entities": []
+    },
+    {
+      "text": "could i video call the nurse?",
+      "intent": "VideoCallProfessional",
+      "entities": []
+    },
+    {
+      "text": "can i video call my nurse?",
+      "intent": "VideoCallProfessional",
+      "entities": []
+    },
+    {
+      "text": "what is the meal for lunch?",
+      "intent": "AccessDailyMealInformation",
+      "entities": []
+    },
+    {
+      "text": "what is the meal for dinner?",
+      "intent": "AccessDailyMealInformation",
+      "entities": []
+    },
+    {
+      "text": "what meal will i have for lunch?",
+      "intent": "AccessDailyMealInformation",
+      "entities": []
+    },
+    {
+      "text": "what will i have for dinner?",
+      "intent": "AccessDailyMealInformation",
+      "entities": []
+    },
+    {
+      "text": "what will i eat today for lunch?",
+      "intent": "AccessDailyMealInformation",
+      "entities": []
+    },
+    {
+      "text": "what is the meal for today?",
+      "intent": "AccessDailyMealInformation",
+      "entities": []
+    }
+  ]
+}
